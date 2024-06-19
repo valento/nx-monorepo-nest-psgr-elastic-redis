@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../../../node_modules/@prisma/schema/client/tester"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PGSQL_WEBAPI_URL")
+}
+
+model customer {
+  id   Int    @id @default(autoincrement())
+  name String @default("Anon") @db.VarChar(20)
+}

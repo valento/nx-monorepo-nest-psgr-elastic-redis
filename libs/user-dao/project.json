@@ -1,0 +1,9 @@
+{
+  "name": "user-dao",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/user-dao/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project prisma-dao --web",
+  "targets": {}
+}
