@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "prisma-model": {
+      "factory": "./src/generators/prisma-model/generator",
+      "schema": "./src/generators/prisma-model/schema.json",
+      "description": "prisma-model generator"
+    }
+  }
+}

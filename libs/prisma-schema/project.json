@@ -6,8 +6,9 @@
   "tags": [],
   "// targets": "to see all targets run: nx show project prisma-schema --web",
   "targets": {
-    "initiate": {
+    "init": {
       "command": "prisma init",
+      "description": "This is not necesary when prisma-clients is automated",
       "options": {
         "cwd": "libs/prisma-schema"
       }

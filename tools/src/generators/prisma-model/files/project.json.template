@@ -1,0 +1,34 @@
+{
+  "name": "prisma-schema-<%= name %>",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/prisma-schema-<%= name %>/prisma",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project prisma-schema-<%= name %> --web",
+  "targets": {
+    "gen-client": {
+      "command": "prisma generate",
+      "options": {
+        "cwd": "libs/prisma-schema-<%= name %>"
+      }
+    },
+    "migrate:dev": {
+      "command": "prisma migrate dev",
+      "options": {
+        "cwd": "libs/prisma-schema-<%= name %>"
+      }
+    },
+    "push:dev": {
+      "command": "prisma db push",
+      "options": {
+        "cwd": "libs/prisma-schema-<%= name %>"
+      }
+    },
+    "pull": {
+      "command": "prisma db pull",
+      "options": {
+        "cwd": "libs/prisma-schema-<%= name %>"
+      }
+    }
+  }
+}

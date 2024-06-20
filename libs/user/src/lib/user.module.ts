@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { PrismaDaoModule } from '@single-client-api/user-dao';
 
 @Module({
-  imports: [PrismaDaoModule],
+  imports: [PrismaDaoModule],// import if you need it available with UserModule
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],

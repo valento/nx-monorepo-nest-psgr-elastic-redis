@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/schema-tenant/client/tenant"
+}
+
+generator prismaClassGenerator {
+  provider         = "prisma-class-generator"
+  output           = "../models/"
+  useSwagger       = "true"
+  indexFile        = "true"
+  dryRun           = "false"
+  clientImportPath = "../../../node_modules/@prisma/tenant/client/tenant"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PGSQL_TENANT_URL")
+}
+
+model tester {
+  uuid       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String?   @default("Tester") @db.VarChar(20)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @default(now()) @db.Timestamp(6)
+}

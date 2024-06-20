@@ -4,6 +4,8 @@
 
 ```shell
 
+# Cheat-sheet:
+# building nx-workspace
 yarn create nx-workspace
 nx add @nx/nest
 nx g @nx/nest:app
@@ -11,5 +13,45 @@ nx serve api
 yarn add prisma
 nx g @nx/js:lib prisma-schema --unitTestRunner=none --bundler=none --simple-name --minimal
 nx g rm prisma-schema
+nx run prisma-schema:initiate --datasource-provider=postgresql
+nx run prisma-schema:pull
+nx run prisma-schema:gen-client
+
+# ---- Automation ----
+nx add @nx/plugin
+nx g @nx/plugin:plugin
+nx g @nx/plgugin:generator
+
+# Add this custom Prisma generator
+yarn add prisma-class-generator
+# This will be inclided in schema.prisma template to generate additional DTO-Classes
+
+# ----------
+
+# Run my prisma-model generator (from above):
+nx g @single-client-api/prisma-models-generator:prisma-model
+* * *
+# CREATE libs/prisma-schema-<your-schema-name>/project.json
+# CREATE libs/prisma-schema-<your-schema-name>/prisma/schema.prisma
+* * *
+
+# Add validation-library class-validator
+yarn add class-validator
+
+# Add path for tsc in tsconfig.base.json like...
+"@single-client-api/prisma-schema-tenant/*": ["libs/prisma-schema/tenant/*"]"
+
+# Pull your prisma models from postgressql valentoDB.<your-schema>
+nx pull prisma-schema-tenant
+# Generate Client and Model-Classes
+# Client goes in /node_modules/@prisma/schema-tenant/client/tenant
+nx gen-client prisma-schema-tenant
+
+# Edit your models/DTOs
+# Export them for NestJS-Services
+
+# Create new NestJS-library to initiate Prisma-Clients as Services, like...
+nx g @nx/nest:lib --name=prisma-client-service-tenant --service
+
 
 ```
