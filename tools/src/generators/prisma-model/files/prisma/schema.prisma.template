@@ -1,6 +1,7 @@
 datasource db {
   provider = "postgresql"
   url = env("PGSQL_<%= name.toUpperCase() %>_URL")
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 generator client {

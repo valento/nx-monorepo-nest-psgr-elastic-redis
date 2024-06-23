@@ -1,0 +1,25 @@
+name: multi-client-api
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${PGSQL_DATABASE}
+      POSTGRES_USER: ${PGSQL_USER}
+      POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
+      POSTGRES_EMAIL: valentin@mail.com
+    build:
+      context: .
+      dockerfile: psgr.dockerfile
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    # command: ["log_statement=all"]
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

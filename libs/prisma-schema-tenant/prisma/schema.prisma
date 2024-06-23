@@ -1,15 +1,16 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../../../node_modules/@prisma/schema-tenant/client/tenant"
+  provider        = "prisma-client-js"
+  output          = "../../../node_modules/@prisma/schema-tenant/client/tenant"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 generator prismaClassGenerator {
   provider         = "prisma-class-generator"
   output           = "../models/"
-  useSwagger       = "true"
-  indexFile        = "true"
   dryRun           = "false"
   clientImportPath = "../../../node_modules/@prisma/tenant/client/tenant"
+  indexFile        = "true"
+  useSwagger       = "true"
 }
 
 datasource db {
@@ -20,6 +21,13 @@ datasource db {
 model tester {
   uuid       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String?   @default("Tester") @db.VarChar(20)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model category {
+  id         Int       @id @default(autoincrement())
+  name       String    @db.VarChar(20)
   created_at DateTime? @default(now()) @db.Timestamp(6)
   updated_at DateTime? @default(now()) @db.Timestamp(6)
 }
