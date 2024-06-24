@@ -13,8 +13,12 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "@single-client-api/elastic-service": [
+        "libs/elastic-service/src/index.ts"
+      ],
       "@single-client-api/prisma-client-service-tenant": [
         "libs/prisma-client-service-tenant/src/index.ts"
       ],
@@ -25,8 +29,9 @@
         "libs/prisma-schema-tenant/*"
       ],
       "@single-client-api/tenant-dao": ["libs/tenant-dao/src/index.ts"],
-      "@single-client-api/user": ["libs/user/src/index.ts"],
-      "@single-client-api/user-dao": ["libs/user-dao/src/index.ts"]
+      "@single-client-api/webapi-dao": ["libs/webapi-dao/src/index.ts"],
+      "//@single-client-api/user-dao": ["libs/user-dao/src/index.ts"],
+      "@single-client-api/prisma-client-web": ["libs/prisma-client-web/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

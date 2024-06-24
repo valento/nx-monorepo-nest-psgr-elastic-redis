@@ -3,7 +3,7 @@ import { TenantDaoService } from './tenant-dao.service';
 // import { tester } from '@prisma/schema-tenant/client/tenant';
 import { PrismaModel } from '@single-client-api/prisma-schema-tenant/models/';
 import { PrismaModelProp } from '@single-client-api/prisma-client-service-tenant';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
 @Controller('tenant')
 @ApiTags('Tenant:Entities')
@@ -15,39 +15,40 @@ export class TenantDaoController {
   @Get('/:entity/:id')
   async get(
     @Param('id') id: string,
-    @Param('entity') entity: PrismaModelProp
+    @Param('entity') entity: string
   ) {
-    console.log(entity)
     
-    return this.service.getOne(id, entity)
+    return this.service.getOne(id, entity as PrismaModelProp)
     // return this.service.getAll()
     // ({message: `Hello Tenant: ${id}`})
   }
 
   @Get('/:entity')
-  async getAll(@Param('entity') entity: PrismaModelProp) {
-    console.log('Controller ',entity)
+  @ApiProperty({ name: 'entity', required: true })
+  async getAll(
+    @Param('entity') entity: string
+  ) {
 
-    return this.service.getAll(entity)
+    return this.service.getAll(entity as PrismaModelProp)
     // ({message: `Hello Tenant: ${id}`})
   }
 
   @Post('create/:entity')
   async create(
-    @Param('entity') entity: PrismaModelProp,
+    @Param('entity') entity: string,
     @Body() body: PrismaModel.CreateTester
   ) {
 
-    return await this.service.createTester( body, entity )
+    return await this.service.createTester( body, entity as PrismaModelProp )
   }
 
   @Post('update/:entity/:id')
   async update(
     @Param('id') id: string,
-    @Param('entity') entity: PrismaModelProp,
+    @Param('entity') entity: string,
     @Body() body: PrismaModel.UpdateTester
   ) {
 
-    return await this.service.updateTester( id, body, entity )
+    return await this.service.updateTester( id, body, entity as PrismaModelProp )
   }
 }

@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { UserService } from './user.service';
+import { UserService } from './webapi-dao.service';
 
 describe('UserService', () => {
   let service: UserService;

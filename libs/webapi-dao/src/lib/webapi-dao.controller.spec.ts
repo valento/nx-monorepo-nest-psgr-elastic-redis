@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { UserController } from './user.controller';
-import { UserService } from './user.service';
+import { UserController } from './webapi-dao.controller';
+import { UserService } from './webapi-dao.service';
 
 describe('UserController', () => {
   let controller: UserController;

@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  output          = "../../../node_modules/@prisma/schema-tenant/client/tenant"
+  output          = "../../../node_modules/.prisma/schema-tenant/client/tenant"
   previewFeatures = ["postgresqlExtensions"]
 }
 
@@ -8,7 +8,7 @@ generator prismaClassGenerator {
   provider         = "prisma-class-generator"
   output           = "../models/"
   dryRun           = "false"
-  clientImportPath = "../../../node_modules/@prisma/tenant/client/tenant"
+  clientImportPath = "../../../node_modules/.prisma/tenant/client/tenant"
   indexFile        = "true"
   useSwagger       = "true"
 }

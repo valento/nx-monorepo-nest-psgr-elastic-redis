@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TenantDaoModule } from '@single-client-api/tenant-dao';
-import { UserController, UserService, UserModule } from '@single-client-api/user';
+import { WebapiDaoModule } from '@single-client-api/webapi-dao';
+// import { WebapiController, WebapiService } from '@single-client-api/webapi-dao';
 
 // import { PrismaDaoModule } from '@single-client-api/user-dao';
 
 @Module({
   imports: [
-    UserModule,
+    WebapiDaoModule,
     TenantDaoModule
   ]
 })

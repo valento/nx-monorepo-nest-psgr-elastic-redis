@@ -1,6 +1,16 @@
 generator client {
-  provider = "prisma-client-js"
-  output = "../../../node_modules/@prisma/schema/client/tester"
+  provider        = "prisma-client-js"
+  output          = "../../../node_modules/.prisma/schema-webapi/client/webapi"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+generator prismaClassGenerator {
+  provider         = "prisma-class-generator"
+  output           = "../models/"
+  dryRun           = "false"
+  clientImportPath = "../../../node_modules/.prisma/schema-webapi/client/webapi"
+  indexFile        = "true"
+  useSwagger       = "true"
 }
 
 datasource db {
@@ -9,6 +19,9 @@ datasource db {
 }
 
 model customer {
-  id   Int    @id @default(autoincrement())
-  name String @default("Anon") @db.VarChar(20)
+  id   Int     @id @default(autoincrement())
+  name String  @default("Anon") @db.VarChar(20)
+  age  Int?    @db.SmallInt
+  type String? @db.VarChar(20)
+  moto String?
 }

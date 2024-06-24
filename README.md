@@ -53,5 +53,18 @@ nx gen-client prisma-schema-tenant
 # Create new NestJS-library to initiate Prisma-Clients as Services, like...
 nx g @nx/nest:lib --name=prisma-client-service-tenant --service
 
+# Spin an elasticsearch-server
+# Add a service to docker-composer with a single master-node and then...
+docker compose up -d
+curl http://localhost:9200
+# (TODO: ssl-certs)
+
+# Lift new Nest-app to query and listen the main app for model-changes
+nx g @nx/nest:app ...
+# Add these for the nest-elasti-client
+yarn add @elastic/elasticsearch @nestjs/elasticsearch @nestjs/microservices
+# Add the new nest-app-service to docker-composer
+
+
 
 ```

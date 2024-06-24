@@ -7,8 +7,10 @@ import { UpdateCategory as _update_category } from './prisma-tenant-dto/update.c
 export namespace PrismaModel {
   export class CreateTester extends _create_tester {}
   export class UpdateTester extends _update_tester {}
+  
   export class CreateCategory extends _create_category {}
   export class UpdateCategory extends _update_category {}
+  // export class extendedTester extends _create_tester{}
 
   // export const extraModels = [tester, category];
 }

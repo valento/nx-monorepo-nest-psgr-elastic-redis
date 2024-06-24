@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClientTenantService, PrismaModelProp, getPrismaDelegate } from '@single-client-api/prisma-client-service-tenant';
 import { PrismaModel } from '@single-client-api/prisma-schema-tenant/models'
-import { tester } from '@prisma/schema-tenant/client/tenant';
+import { tester } from '.prisma/schema-tenant/client/tenant';
 
 
 @Injectable()
