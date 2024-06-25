@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
+// import { ConfigModule } from '@nestjs/config'
+
 import { ElasticServiceController } from './elastic-service.controller';
-import { ElasticServiceService } from './elastic-service.service';
+import { ElasticSearchService } from './elastic-service.service';
+import { ElasticsearchModule } from '@nestjs/elasticsearch';
 
 @Module({
+  imports: [
+    ElasticsearchModule.registerAsync({
+      useFactory: async () => ({
+        node: 'http://localhost:9200'
+      })
+    })
+  ],
   controllers: [ElasticServiceController],
-  providers: [ElasticServiceService],
-  exports: [ElasticServiceService],
+  providers: [ElasticSearchService],
+  exports: [ElasticSearchService, ElasticsearchModule],
 })
-export class ElasticServiceModule {}
+export class ElasticEngineModule {}

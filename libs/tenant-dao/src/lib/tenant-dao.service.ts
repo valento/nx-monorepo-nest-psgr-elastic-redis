@@ -85,6 +85,8 @@ export class TenantDaoService {
       })
 
       if(data) {
+      // REDIS poke SearcheEngine Microservice
+        // 
         return {
           success: true,
           message: 'User updated successfully...',

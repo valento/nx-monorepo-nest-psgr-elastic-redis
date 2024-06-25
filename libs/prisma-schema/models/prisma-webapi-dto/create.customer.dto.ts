@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { UpdateCustomer } from './update.customer.dto';
 
 export class CreateCustomer {
 
@@ -22,4 +23,11 @@ export class CreateCustomer {
   @IsNotEmpty()
   @IsString()
   moto?: string;
+}
+
+export class CustomerSearchResults {
+  hits: {
+    total: number,
+    hits: Array<{_source: UpdateCustomer}>
+  }
 }

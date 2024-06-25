@@ -16,11 +16,15 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "//@single-client-api/user-dao": ["libs/user-dao/src/index.ts"],
       "@single-client-api/elastic-service": [
         "libs/elastic-service/src/index.ts"
       ],
       "@single-client-api/prisma-client-service-tenant": [
         "libs/prisma-client-service-tenant/src/index.ts"
+      ],
+      "@single-client-api/prisma-client-web": [
+        "libs/prisma-client-web/src/index.ts"
       ],
       "@single-client-api/prisma-models-generator": ["tools/src/index.ts"],
       "@single-client-api/prisma-schema": ["libs/prisma-schema/src/index.ts"],
@@ -29,9 +33,7 @@
         "libs/prisma-schema-tenant/*"
       ],
       "@single-client-api/tenant-dao": ["libs/tenant-dao/src/index.ts"],
-      "@single-client-api/webapi-dao": ["libs/webapi-dao/src/index.ts"],
-      "//@single-client-api/user-dao": ["libs/user-dao/src/index.ts"],
-      "@single-client-api/prisma-client-web": ["libs/prisma-client-web/src/index.ts"]
+      "@single-client-api/webapi-dao": ["libs/webapi-dao/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
