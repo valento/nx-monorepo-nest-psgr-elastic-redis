@@ -5,6 +5,7 @@ import { PrismaModel } from '@single-client-api/prisma-schema/models';
 
 @Injectable()
 export class ElasticSearchService {
+  private index = 'customers'
   constructor(
     private es: ElasticsearchService
   ){}
@@ -15,7 +16,7 @@ export class ElasticSearchService {
   indexCustomer = async (customer: PrismaModel.UpdateCustomer) => {
     try {
       return this.es.index<PrismaModel.CustomerSearchResults>({
-        index: 'customers',
+        index: this.index,
         body: {
           id: customer.id,
           name: customer.name,
@@ -31,7 +32,7 @@ export class ElasticSearchService {
 
   search = async (text: string) => {
     const body = await this.es.search<PrismaModel.CustomerSearchResults>({
-      index: 'customer',
+      index: this.index,
       body: {
         query: {
           multi_match: {

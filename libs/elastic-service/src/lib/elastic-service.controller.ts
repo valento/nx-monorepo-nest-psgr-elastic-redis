@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Query } from '@nestjs/common';
 import { ElasticSearchService } from './elastic-service.service';
 import { ApiTags } from '@nestjs/swagger';
 import { EventPattern } from '@nestjs/microservices';
@@ -12,11 +12,13 @@ export class ElasticServiceController {
     private service: ElasticSearchService
   ) {}
 
-  @Get('customer')
+  @Get('/customer')
   async searchCustomer(
-    @Query('search') search: string
+    @Query('search') text: string
   ) {
-    this.service.search(search)
+    console.log('Search customers:', text);
+    
+    this.service.search(text)
   }
 
   // ===== events ==============
@@ -29,6 +31,13 @@ export class ElasticServiceController {
 
     return this.service.indexCustomer(data)
 
+  }
+
+  @EventPattern('customer_deleted')
+  async removeCustomerIndex(
+    @Param('id') id: number 
+  ) {
+    // 
   }
 
 }
