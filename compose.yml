@@ -1,6 +1,17 @@
 name: multi-client-api
 
 services:
+  redis:
+    image: redis
+    container_name: es-redis
+    ports:
+      - ${REDIS_PORT}:6379
+  # pubsub-listener:
+  #   container_name: pubsub-listener
+  #   build:
+  #     dockerfile: pubsub.listener.dockerfile
+  #     context: .
+  #   command: ['node', 'dist/listener.js']
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.14.1
     container_name: elastic01

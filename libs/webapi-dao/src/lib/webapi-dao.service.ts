@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 // import { customer } from '.prisma/schema-webapi/client/webapi';
 import { PrismaClientWebapiService } from '@single-client-api/prisma-client-web'
 import { PrismaModel } from '@single-client-api/prisma-schema/models';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class WebapiService {
   constructor(
-    private client: PrismaClientWebapiService
+    private client: PrismaClientWebapiService,
+    @Inject('CUSTOMER_SERVICE') private readonly pubsub: ClientProxy
   ) {}
 
   get = async (id: number) => {
@@ -49,6 +51,15 @@ export class WebapiService {
     try {
       const result = await this.client.customer.create({ data: data })
 
+
+    // here REDIS pokes Elastic-server
+    // We should upadte the index from Tenant-schema the same, but my POST methods there won't work for now :-( )
+      if(result) {
+        console.log('Poke REDIS: ', result);
+        
+        this.pubsub.emit('customer_created', result)
+      }
+
       return ({
         success: true,
         message: "Customer created successfully...",
@@ -70,6 +81,11 @@ export class WebapiService {
         where: { id },
         data
       })
+
+    // REDIS poke Elastic-server
+      if(result) {
+        // 
+      }
 
       return ({
         success: true,

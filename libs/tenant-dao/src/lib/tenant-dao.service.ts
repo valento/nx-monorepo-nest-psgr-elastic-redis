@@ -58,6 +58,8 @@ export class TenantDaoService {
     const delegate = this.getDelegate( entity )
     
     try {
+    // Not working :-( - probably the uuid-type)
+
       const data = delegate.create({ data: body })
 
       return {
@@ -80,6 +82,7 @@ export class TenantDaoService {
     
     try {
       const data = delegate.update({
+      // Not working :-( - probably the uuid-type)
         whereUnique: { uuid },
         data: body
       })
