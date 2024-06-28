@@ -9,8 +9,8 @@ generator prismaClassGenerator {
   output           = "../models/"
   dryRun           = "false"
   clientImportPath = "../../../node_modules/.prisma/tenant/client/tenant"
-  indexFile        = "true"
   useSwagger       = "true"
+  indexFile        = "true"
 }
 
 datasource db {
@@ -25,9 +25,11 @@ model tester {
   updated_at DateTime? @default(now()) @db.Timestamp(6)
 }
 
-model category {
+model tenant {
   id         Int       @id @default(autoincrement())
-  name       String    @db.VarChar(20)
+  name       String    @default("Anonymous Tenant") @db.VarChar(20)
+  phone      String?
+  address    String?
   created_at DateTime? @default(now()) @db.Timestamp(6)
   updated_at DateTime? @default(now()) @db.Timestamp(6)
 }

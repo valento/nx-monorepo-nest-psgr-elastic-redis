@@ -1,21 +1,18 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
 
 export class customer {
   @ApiProperty({ type: Number })
-  @IsNotEmpty()
   id: number;
 
   @ApiProperty({ type: String })
-  @IsNotEmpty()
-  name: string;
+  name: string = 'Anon';
 
   @ApiPropertyOptional({ type: Number })
   age?: number;
 
-  @ApiPropertyOptional({ type: String })
-  type?: string;
+  @ApiProperty({ type: String })
+  type: string = 'newbie';
 
   @ApiPropertyOptional({ type: String })
-  moto?: string;
+  quote?: string;
 }

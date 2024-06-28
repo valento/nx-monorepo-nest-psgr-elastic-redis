@@ -21,8 +21,8 @@ export class ElasticSearchService {
           id: customer.id,
           name: customer.name,
           age: customer.age,
-          moto: customer.moto,
-          type: customer.type
+          type: customer.type,
+          quote: customer.quote,
         }
       })
     } catch (error) {
@@ -37,13 +37,24 @@ export class ElasticSearchService {
         query: {
           multi_match: {
             query: text,
-            fields: ['name','moto','type']
+            fields: ['name','quote','type', 'age']
           }
         }
       }
     })
     const hits = body.hits.hits
     return hits.map( item => item._source )
+  }
+
+  remove = async (id: number) => {
+    this.es.deleteByQuery({
+      index: this.index,
+      body: {
+        query: {
+          match: {id}
+        }
+      }
+    }) 
   }
 
   // =================================================================

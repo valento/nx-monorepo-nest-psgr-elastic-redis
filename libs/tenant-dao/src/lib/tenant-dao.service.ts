@@ -53,7 +53,7 @@ export class TenantDaoService {
     }
   }
 
-  createTester = async ( body: PrismaModel.CreateTester, entity: PrismaModelProp) => {
+  createTester = async ( body: PrismaModel.CreateTenant, entity: PrismaModelProp) => {
     
     const delegate = this.getDelegate( entity )
     
@@ -76,7 +76,7 @@ export class TenantDaoService {
   }
 
   
-  updateTester = async ( uuid: string, body: PrismaModel.UpdateTester, entity: PrismaModelProp) => {
+  updateTester = async ( uuid: string, body: PrismaModel.UpdateTenant, entity: PrismaModelProp) => {
     
     const delegate = this.getDelegate( entity )
     

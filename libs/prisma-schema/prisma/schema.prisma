@@ -8,9 +8,9 @@ generator prismaClassGenerator {
   provider         = "prisma-class-generator"
   output           = "../models/"
   dryRun           = "false"
-  clientImportPath = "../../../node_modules/.prisma/schema-webapi/client/webapi"
-  indexFile        = "true"
   useSwagger       = "true"
+  indexFile        = "true"
+  clientImportPath = "../../../node_modules/.prisma/schema-webapi/client/webapi"
 }
 
 datasource db {
@@ -19,9 +19,9 @@ datasource db {
 }
 
 model customer {
-  id   Int     @id @default(autoincrement())
-  name String  @default("Anon") @db.VarChar(20)
-  age  Int?    @db.SmallInt
-  type String? @db.VarChar(20)
-  moto String?
+  id    Int     @id @default(autoincrement())
+  name  String  @default("Anon") @db.VarChar(20)
+  age   Int?    @db.SmallInt
+  type  String  @default("newbie") @db.VarChar(20)
+  quote String?
 }

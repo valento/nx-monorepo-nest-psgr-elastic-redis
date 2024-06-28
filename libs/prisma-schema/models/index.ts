@@ -10,8 +10,7 @@ export namespace PrismaModel {
 
   export class UpdateCustomer extends _update_customer {}
   
-
-  // export class customer extends _customer {}
-
   // export const extraModels = [customer];
 }
+
+export * from './prisma-webapi-dto/filter.customer'

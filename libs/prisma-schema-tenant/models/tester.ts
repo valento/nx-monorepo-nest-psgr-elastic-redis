@@ -1,5 +1,4 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PrismaModelProp } from '../../prisma-client-service-tenant/src';
 
 export class tester {
   @ApiProperty({ type: String })
@@ -13,7 +12,4 @@ export class tester {
 
   @ApiPropertyOptional({ type: Date })
   updated_at?: Date;
-
-  @ApiProperty({ type: String })
-  entity: PrismaModelProp;
 }

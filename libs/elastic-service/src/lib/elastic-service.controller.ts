@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Query } from '@nestjs/common';
 import { ElasticSearchService } from './elastic-service.service';
 import { ApiTags } from '@nestjs/swagger';
 import { EventPattern } from '@nestjs/microservices';
-import { PrismaModel } from '@single-client-api/prisma-schemamodels';
+import { PrismaModel } from '@single-client-api/prisma-schema/models';
 
 @Controller('search')
 @ApiTags('Search: Customers')
@@ -38,6 +38,11 @@ export class ElasticServiceController {
     @Param('id') id: number 
   ) {
     // 
+  }
+
+  @EventPattern('customer_feed')
+  async feedIndex(@Body() data: PrismaModel.UpdateCustomer){
+    return this.service.indexCustomer(data)
   }
 
 }

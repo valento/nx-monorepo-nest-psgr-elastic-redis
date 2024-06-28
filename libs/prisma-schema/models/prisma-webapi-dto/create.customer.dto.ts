@@ -22,7 +22,7 @@ export class CreateCustomer {
   @ApiProperty({ type: String })
   @IsNotEmpty()
   @IsString()
-  moto?: string;
+  quote?: string;
 }
 
 export class CustomerSearchResults {

@@ -19,5 +19,5 @@ export class UpdateCustomer {
 
   @ApiProperty({ type: String })
   @IsString()
-  moto?: string;
+  quote?: string;
 }

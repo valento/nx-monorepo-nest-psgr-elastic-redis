@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TenantDaoService } from './tenant-dao.service';
 // import { tester } from '@prisma/schema-tenant/client/tenant';
-import { PrismaModel } from '@single-client-api/prisma-schema-tenant/models/';
+import { PrismaModel } from '@single-client-api/prisma-schema-tenant/models';
 import { PrismaModelProp } from '@single-client-api/prisma-client-service-tenant';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
@@ -36,7 +36,7 @@ export class TenantDaoController {
   @Post('create/:entity')
   async create(
     @Param('entity') entity: string,
-    @Body() body: PrismaModel.CreateTester
+    @Body() body: PrismaModel.CreateTenant
   ) {
 
     return await this.service.createTester( body, entity as PrismaModelProp )
@@ -46,7 +46,7 @@ export class TenantDaoController {
   async update(
     @Param('id') id: string,
     @Param('entity') entity: string,
-    @Body() body: PrismaModel.UpdateTester
+    @Body() body: PrismaModel.UpdateTenant
   ) {
 
     return await this.service.updateTester( id, body, entity as PrismaModelProp )

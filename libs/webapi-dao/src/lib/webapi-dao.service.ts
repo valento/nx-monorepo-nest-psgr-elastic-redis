@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 // import { customer } from '.prisma/schema-webapi/client/webapi';
 import { PrismaClientWebapiService } from '@single-client-api/prisma-client-web'
-import { PrismaModel } from '@single-client-api/prisma-schema/models';
+import { PrismaModel, Rules, Filtering } from '@single-client-api/prisma-schema/models';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
@@ -21,18 +21,24 @@ export class WebapiService {
         success: true,
         data: customer
       }
-    } catch (err) {
+    } catch (errror) {
       return {
         success: false,
-        message: err
+        message: errror
       }
     }
   }
 
-  getAll = async () => {
+  getAll = async (filter?: Filtering) => {
+
+    const where = this.getWhere(filter)
+    console.log(where);
+
     try {
       
-      const results = await this.client.customer.findMany()
+      const results = await this.client.customer.findMany({
+        where
+      })
 
       return {
         success: true,
@@ -50,7 +56,6 @@ export class WebapiService {
   create = async ( data: PrismaModel.CreateCustomer ) => {
     try {
       const result = await this.client.customer.create({ data: data })
-
 
     // here REDIS pokes Elastic-server
     // We should upadte the index from Tenant-schema the same, but my POST methods there won't work for now :-( )
@@ -93,11 +98,58 @@ export class WebapiService {
         result
       })
     } catch(error) {
-    console.error(error)
-    return({
+      console.error(error)
+      return({
         success: false,
         message: error
       })
+    }
+  }
+
+  feed = async () => {
+    try {
+      const results = await this.client.customer.findMany()
+      if (results.length) {
+        results.forEach(
+          item => {
+            this.pubsub.emit('customer_feed', item)
+            console.log('Poke REDIS: ', item);
+          }
+        )
+        return ({
+          success: true,
+          message: 'Search fed successfully'
+        })
+      } else {
+        throw new Error('No data found')
+      }
+    } catch(error) {
+      console.error(error)
+      return ({
+        success: false,
+        message: error
+      })
+    }
+  }
+
+
+  getWhere(filter?: Filtering) {
+    if (!filter) {
+      console.log('No filters');
+      return {}     
+    }
+
+    switch(filter.rule) {
+      case Rules.EQUAL:
+        return {[filter.property]: Number(filter.value)}
+        
+      case Rules.GREATER:
+        return {[filter.property]: { gt: (Number(filter.value)) }}
+
+      case Rules.LESS:
+        return {[filter.property]: { lt: (Number(filter.value)) }}
+
+      default: return {}
     }
   }
 }

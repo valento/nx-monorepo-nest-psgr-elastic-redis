@@ -7,7 +7,6 @@ for i in {1..13}
 do
   curl -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-	'http://localhost:3000/api/webapi/create' \
-  -d '{"name":"Ronald'$i'o","age": '$((i+23))',"type":"pro" }'
+	'http://localhost:3005/api/webapi/create' \
+  -d '{"name":"Tester'$i'o","age": '$((i+21))',"type":"expert" }'
 done
-#2d31f790-d08f-428a-8068-770ffec1c867

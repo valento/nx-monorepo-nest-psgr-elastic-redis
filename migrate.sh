@@ -1,1 +1,3 @@
-cat dump.sql | docker exec -i 930ae47004b3 psql -U valento -d valentoDB
+#!/bin/bash
+# === !!! Check for your postgres-container ID !!! =============
+cat dump.sql | docker exec -i e122ff1f7928 psql -U valento -d valentoDB
