@@ -1,4 +1,4 @@
-name: multi-client-api
+name: valento-api
 
 services:
   redis:

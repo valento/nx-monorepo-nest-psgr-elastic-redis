@@ -30,9 +30,7 @@
       "@single-client-api/prisma-schema/models/*": ["libs/prisma-schema/src/models/index.copy.ts"],
       "@single-client-api/prisma-schema/*": ["libs/prisma-schema/*"],
       "@single-client-api/prisma-schema-tenant/models/*": ["libs/prisma-schema-tenant/src/models/index.copy.ts"],
-      "@single-client-api/prisma-schema-tenant/*": [
-        "libs/prisma-schema-tenant/*"
-      ],
+      "@single-client-api/prisma-schema-tenant/*": ["libs/prisma-schema-tenant/*"],
       "@single-client-api/tenant-dao": ["libs/tenant-dao/src/index.ts"],
       "@single-client-api/webapi-dao": ["libs/webapi-dao/src/index.ts"]
     }

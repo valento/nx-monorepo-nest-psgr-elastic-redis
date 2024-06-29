@@ -11,24 +11,26 @@
 
  # Generate Prisma Clients
  ```shell
+ # This will generate 2-clients for 2db-schemas (webapi, tenant) 
  nx run-many --targets=gen-client
+ # (by default, DB has 4 schemas: webapi | tenant | public | admin from dump.sql)
  ```
- ## DB has 4 schemas: webapi | tenant | public | admin
 
- # Run Apps: there is one api-app (with swagger-docs) and one microservice-app (elastic-api)
+ # Run Apps: this lifts one webapi-server (with swagger-docs) and one microservice-server (elastic-api)
  ```shell
  #  All together
- nx run-many --target=serve
+ nx run-many --targets=serve
  #  Or
  #  Individually
  nx serve api
  nx serve search-api
  ```
  
- # Feed DB with some data
+ # Feed DB with some data through the web-api
  ```bash
- #  This curls the localhost:3005/api/webapi/create endpoint
+ # This curls the localhost:3000/api/webapi/create endpoint to create 'customer's
  bash ./seed.postgresql.sh
+ # Check/edit/run again the code, for more entries
  ```
  
  # Explore
@@ -64,3 +66,4 @@
   - NX-monorepo - lovelly tech
   - NestJS-microservice - to listen REDIS and update/create Elasticsearch indices - lovelly tech
   - NX-libs - to explore and learn the beauty of typed-monorepos
+  - Not finished attempt: a single nest-app-boilerplate should be sufficient to lift ( bootstrap(app, options) ) both (or more) servers for api, listener, observers... etc. as libraries in monorepo
