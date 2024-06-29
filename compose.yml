@@ -42,6 +42,7 @@ services:
       POSTGRES_USER: ${PGSQL_USER}
       POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
       POSTGRES_EMAIL: valentin@mail.com
+      PGDATA: /var/lib/postgresql/data/pgdata
     build:
       context: .
       dockerfile: psgr.dockerfile

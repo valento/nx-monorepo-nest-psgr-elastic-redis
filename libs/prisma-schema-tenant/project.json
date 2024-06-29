@@ -7,7 +7,7 @@
   "// targets": "to see all targets run: nx show project prisma-schema-tenant --web",
   "targets": {
     "gen-client": {
-      "command": "prisma generate cp models/index.copy.ts models/index.ts",
+      "command": "prisma generate && cp models/index.copy.ts models/index.ts",
       "options": {
         "cwd": "libs/prisma-schema-tenant"
       }

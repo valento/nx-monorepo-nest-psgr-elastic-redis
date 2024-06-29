@@ -14,7 +14,7 @@
       }
     },
     "gen-client": {
-      "command": "prisma generate cp models/index.copy.ts models/index.ts",
+      "command": "prisma generate && cp models/index.copy.ts models/index.ts",
       "options": {
         "cwd": "libs/prisma-schema"
       }
