@@ -30,7 +30,7 @@ export const ApiFilteringQuery = (params: string[]) => applyDecorators(
     required: false,
     explode: false,
     type: String,
-    description: `Filters available format: ?filter=property:(age), allowed:${JSON.stringify(params)}`
+    description: `Filters available format: ?filter=property:(lt|eq|gt), allowed:${JSON.stringify(params)}`
   })
 )
 

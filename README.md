@@ -46,6 +46,12 @@
  
   - [web-api](http://localhost:3005/api) 
 
+ ## API query system: customers filtering by age
+ ```shell
+ http://localhost:3000/api
+  /webapi/customer?filter=age:eq:30
+  /webapi/customer?filter=age:gt:23
+ ```
  # Elasticsearch endpoints examples
  ```
  http://localhost:9200/_aliases?pretty=true
